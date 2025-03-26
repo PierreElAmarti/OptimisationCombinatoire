@@ -7,7 +7,7 @@ buildPath="./Knapsack/build"
 #os.system("buildPath+"/src/Heur convert/kplib-master/00Uncorrelated/n00050/R01000/s000.kp ")
 #test=subprocess.check_output("buildPath+"/src/BB "+"convert/kplib-master/00Uncorrelated/n00050/R01000/s000.kp ", shell=True)
 #print(str(test).replace('\\n','\n'))
-baseFileName="res"
+baseFileName="resDP"
 i=0
 
 #creation du nouveau fichier de res (le fichier 'nb' sert à mémoriser le chiffre courant)
@@ -21,9 +21,7 @@ var=subprocess.check_output("echo \"file name;TYPE;cost;upper bound;rounded uppe
 for path in root.glob("**/*"):
     if(str(path)[len(str(path))-2:]=="kp" or str(path)[len(str(path))-2:]=="in" ):
         try:
-            test=subprocess.check_output(buildPath+"/Heur ./"+str(path)+" resultats/"+baseFileName+""+str(nb_nouv)+".csv", shell=True,errors=False)
             test=subprocess.check_output(buildPath+"/BB ./"+str(path)+" resultats/"+baseFileName+""+str(nb_nouv)+".csv", shell=True,errors=False)
-            test=subprocess.check_output(buildPath+"/DP ./"+str(path)+" resultats/"+baseFileName+""+str(nb_nouv)+".csv", shell=True,errors=False)
             #print("./"+str(path))
             i+=1
         except:
