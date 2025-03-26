@@ -21,7 +21,7 @@ var=subprocess.check_output("echo \"file name;TYPE;cost;upper bound;rounded uppe
 for path in root.glob("**/*"):
     if(str(path)[len(str(path))-2:]=="kp" or str(path)[len(str(path))-2:]=="in" ):
         try:
-            test=subprocess.check_output(buildPath+"/BB ./"+str(path)+" resultats/"+baseFileName+""+str(nb_nouv)+".csv", shell=True,errors=False)
+            test=subprocess.check_output(buildPath+"/Heur ./"+str(path)+" resultats/"+baseFileName+""+str(nb_nouv)+".csv", shell=True,errors=False)
             #print("./"+str(path))
             i+=1
         except:

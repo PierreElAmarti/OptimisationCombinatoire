@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/BB.dir/testBB.cpp.o CMakeFiles/BB.dir/kpSolver.cpp.o CMakeFiles/BB.dir/kpSolverDPsparseV2.cpp.o CMakeFiles/BB.dir/nodeBB.cpp.o CMakeFiles/BB.dir/kpSolverGreedy.cpp.o CMakeFiles/BB.dir/kpSolverHeurDP.cpp.o CMakeFiles/BB.dir/nodeManagement.cpp.o CMakeFiles/BB.dir/kpSolverBB.cpp.o -o BB 

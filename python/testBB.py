@@ -2,7 +2,7 @@ import os
 import subprocess
 from pathlib import Path
 #os.system("touch output.csv")
-root = Path("./convert/")
+root = Path("./instances/")
 buildPath="./Knapsack/build"
 #os.system("buildPath+"/src/Heur convert/kplib-master/00Uncorrelated/n00050/R01000/s000.kp ")
 #test=subprocess.check_output("buildPath+"/src/BB "+"convert/kplib-master/00Uncorrelated/n00050/R01000/s000.kp ", shell=True)
@@ -32,5 +32,5 @@ for path in root.glob("**/*"):
     if(i==1): #NB max d'instances à tester
         break
 
-    print("fichier de sortie : resultats/"+baseFileName+""+str(nb_nouv)+".csv")
+print("fichier de sortie : resultats/"+baseFileName+""+str(nb_nouv)+".csv")
 
