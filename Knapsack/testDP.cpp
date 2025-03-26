@@ -3,7 +3,6 @@
 //#include "kpSolverDP2.hpp"
 #include "kpSolverHeurDP.hpp"
 #include "kpSolverDPsparseV2.hpp"
-#include "kpSolverDPval.hpp"
 #include <sstream>
 
 
@@ -126,13 +125,6 @@ void testDPSolvers(std::string const &instanceFile,std::string const &outputFile
     fichier <<instanceFile<<";";
     fichier << "test kpSolverDPsparseV2"<< ";";
     kp = new kpSolverDPsparseV2(instanceFile);
-    fichier << testSolver( kp);
-    delete kp;
-
-    cout << "test kpSolverDPval :" <<endl;
-    fichier <<instanceFile<<";";
-    fichier << "test kpSolverDPval"<< ";";
-    kp = new kpSolverDPval(instanceFile);
     fichier << testSolver( kp);
     delete kp;
 

@@ -50,7 +50,7 @@ void testBBSolvers(const char* instanceFile,const char* outputFile){
 
     ofstream fichier;
     fichier.open(outputFile, std::ios_base::app); // ouverture du fichier en mode app https://stackoverflow.com/questions/61895932/how-to-append-to-a-file-in-c
-    fichier <<instanceFile<<";";
+    
 
 
     vector<BranchingStrategies> bStrategies = { BranchingStrategies::BestBound,  BranchingStrategies::DFS10, BranchingStrategies::DFS01}; // BranchingStrategies::BFS
@@ -60,19 +60,28 @@ void testBBSolvers(const char* instanceFile,const char* outputFile){
      for(auto b : bStrategies){
 
             cout  << endl << "Mode de branchement : " << name(b)  << endl << endl;
-             fichier << "BB "<<name(b)<< ";";
+             
              KpSolverBB kpBB (instanceFile,b);
              kpBB.setVerboseMode(0);
 
+                
+
               cout  << "Resultats sans heuristique initiale:"  << endl << endl;
               kpBB.setInitialHeur(Heuristics::None);
+              fichier <<instanceFile<<";";
+              fichier << "BB sans heuristique initiale:"<<name(b)<< ";";
               fichier<<testSolver(kpBB);
+
                cout  << endl << "Resultats avec heuristique gloutonne initiale:"  << endl << endl;
                kpBB.setInitialHeur(Heuristics::Greedy);
+              fichier <<instanceFile<<";";
+              fichier << "BB avec heuristique gloutonne initiale:"<<name(b)<< ";";
                fichier<<testSolver(kpBB);
 
                cout  << endl << "Resultats avec heuristique DP initiale:"  << endl << endl;
                kpBB.setInitialHeur(Heuristics::KernelSearch);
+              fichier <<instanceFile<<";";
+              fichier << "BB avec heuristique DP initiale:"<<name(b)<< ";";
                fichier<<testSolver(kpBB);
 
      }
