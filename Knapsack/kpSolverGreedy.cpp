@@ -65,6 +65,24 @@ void KpSolverGreedy::solveGreedyLowerBound() {
 	}
  }
 
+ // Code rajout question 7
+//  void KpSolverGreedy::solveGreedyLowerBound() {
+
+//      costSolution=0;
+//      uint remaining = knapsackBound;
+
+//      for (uint i = 0; i < nbItems; i++){
+//          if (weights[i] <= remaining){
+//              remaining -= weights[i];
+//              costSolution += values[i];
+//              solution[i]=true;
+//          } else{
+//             break;
+//          }
+//      }
+//   }
+
+
 void KpSolverGreedy::solve() {
     std::pair<std::pair<uint, uint>, T> p(solveGreedyUpperBound());
     uint i(p.first.first);
