@@ -33,7 +33,7 @@ subprocess.check_output("touch resultats/"+baseFileName+""+str(nb)+".csv",shell=
 var=subprocess.check_output("echo \"file name;TYPE;cost;upper bound;rounded upper bound;gap;time\" > resultats/"+baseFileName+""+str(nb)+".csv",shell=True,errors=False)
 
 i=0
-for path in root.glob("**/*"):
+for path in sorted(root.glob("**/*"),reverse=True):
     if(str(path)[len(str(path))-2:]=="kp" or str(path)[len(str(path))-2:]=="in" ):
         try:
             test=subprocess.check_output(buildPath+"/BB ./"+str(path)+" resultats/"+baseFileName+""+str(nb)+".csv", shell=True,errors=False)
