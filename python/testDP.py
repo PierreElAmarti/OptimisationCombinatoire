@@ -7,7 +7,7 @@ buildPath="./Knapsack/build"
 #os.system("buildPath+"/src/Heur convert/kplib-master/00Uncorrelated/n00050/R01000/s000.kp ")
 #test=subprocess.check_output("buildPath+"/src/BB "+"convert/kplib-master/00Uncorrelated/n00050/R01000/s000.kp ", shell=True)
 #print(str(test).replace('\\n','\n'))
-baseFileName="res"
+baseFileName="resDP"
 
 
 numFile=Path("./resultats/numero.conf")
@@ -36,8 +36,6 @@ i=0
 for path in sorted(root.glob("**/*"),reverse=True):
     if(str(path)[len(str(path))-2:]=="kp" or str(path)[len(str(path))-2:]=="in" ):
         try:
-            test=subprocess.check_output(buildPath+"/Heur ./"+str(path)+" resultats/"+baseFileName+""+str(nb)+".csv", shell=True,errors=False)
-            test=subprocess.check_output(buildPath+"/BB ./"+str(path)+" resultats/"+baseFileName+""+str(nb)+".csv", shell=True,errors=False)
             test=subprocess.check_output(buildPath+"/DP ./"+str(path)+" resultats/"+baseFileName+""+str(nb)+".csv", shell=True,errors=False)
             #print("./"+str(path))
             i+=1
@@ -46,7 +44,7 @@ for path in sorted(root.glob("**/*"),reverse=True):
         #print(test)
     else:
         pass
-    if(i==1): #NB max d'instances à tester
+    if(i==5): #NB max d'instances à tester
         break
 
 print("fichier de sortie : resultats/"+baseFileName+""+str(nb)+".csv")

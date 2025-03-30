@@ -69,19 +69,19 @@ void testBBSolvers(const char* instanceFile,const char* outputFile){
               cout  << "Resultats sans heuristique initiale:"  << endl << endl;
               kpBB.setInitialHeur(Heuristics::None);
               fichier <<instanceFile<<";";
-              fichier << "BB sans heuristique initiale:"<<name(b)<< ";";
+              fichier << "BB sans heuristique initiale: Mode : "<<name(b)<< ";";
               fichier<<testSolver(kpBB);
 
                cout  << endl << "Resultats avec heuristique gloutonne initiale:"  << endl << endl;
                kpBB.setInitialHeur(Heuristics::Greedy);
               fichier <<instanceFile<<";";
-              fichier << "BB avec heuristique gloutonne initiale:"<<name(b)<< ";";
+              fichier << "BB avec heuristique gloutonne initiale: Mode : "<<name(b)<< ";";
                fichier<<testSolver(kpBB);
 
                cout  << endl << "Resultats avec heuristique DP initiale:"  << endl << endl;
                kpBB.setInitialHeur(Heuristics::KernelSearch);
               fichier <<instanceFile<<";";
-              fichier << "BB avec heuristique DP initiale:"<<name(b)<< ";";
+              fichier << "BB avec heuristique DP initiale: Mode : "<<name(b)<< ";";
                fichier<<testSolver(kpBB);
 
      }

@@ -1,5 +1,0 @@
-/home/lehe/Documents/opticomb/projet/OptimisationCombinatoire/Knapsack/build/CMakeFiles/Heur.dir
-/home/lehe/Documents/opticomb/projet/OptimisationCombinatoire/Knapsack/build/CMakeFiles/DP.dir
-/home/lehe/Documents/opticomb/projet/OptimisationCombinatoire/Knapsack/build/CMakeFiles/BB.dir
-/home/lehe/Documents/opticomb/projet/OptimisationCombinatoire/Knapsack/build/CMakeFiles/edit_cache.dir
-/home/lehe/Documents/opticomb/projet/OptimisationCombinatoire/Knapsack/build/CMakeFiles/rebuild_cache.dir
