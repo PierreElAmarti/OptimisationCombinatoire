@@ -38,7 +38,7 @@ public:
     // Reads instance data. 
     void importInstance(const string& fileName);
     void printKnapsackInstance();
-    void printKnapsackSolution(bool printSol);
+    std::string printKnapsackSolution(bool printSol);
     void reindexMemo(bool sortMode);
 
 	int getUpperBound(){return upperBoundOPT;};

@@ -2,6 +2,7 @@
 
 #include "kpSolver.hpp"
 #include <math.h>
+#include <sstream>
 
 void KpSolver::importInstance(const string& fileName) {
 
@@ -72,13 +73,22 @@ void KpSolver::printKnapsackInstance() {
 	 cout << endl;	
  }
 
-void KpSolver::printKnapsackSolution(bool printSol) {
+std::string KpSolver::printKnapsackSolution(bool printSol) {
+
+	std::stringstream ss;
+	
 
 	cout << "solution cost : " << costSolution << endl;
+	ss << costSolution << ";";
+
 	cout << "proven upper bound  : " << upperBoundOPT << endl;
+	ss << upperBoundOPT << ";";
+
 	cout << "proven upper bound  after rounding: " << floor(upperBoundOPT) << endl;
+	ss<<floor(upperBoundOPT)<<";";
 
 	cout << "gap : " << (floor(upperBoundOPT)- (double)costSolution) /( (double)costSolution) * 100 << "%" << endl;
+	ss<< (floor(upperBoundOPT)- (double)costSolution) /( (double)costSolution) * 100<<";";
 
 	if (printSol){
 	cout << "knapsack composition  : ";
@@ -86,6 +96,8 @@ void KpSolver::printKnapsackSolution(bool printSol) {
 		    std::cout << ' ' << *it;
 	cout  << endl;
 	}
+
+	return ss.str();
 
 }
 

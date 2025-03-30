@@ -2,8 +2,11 @@
 #include "kpSolverBB.hpp"
 #include <chrono>
 #include <string>
+#include <sstream>
 
 using namespace std;
+
+std::string name(BranchingStrategies b);
 
 BranchingStrategies& operator ++ (BranchingStrategies& e)
 {
@@ -14,21 +17,28 @@ BranchingStrategies& operator ++ (BranchingStrategies& e)
     return e;
 }
 
-void printModeBranching(BranchingStrategies  b){
-	switch (b) {
-	        case BestBound: std::cout << "BestBound"; break;
-	        case BFS: std::cout << "BFS";  break;
-	        case DFS10: std::cout << "DFS10"; break;
-	        case DFS01: std::cout << "DFS01"; break;
-	        case Random: std::cout << "Random";
+std::string printModeBranching(BranchingStrategies  b){
+	std::cout<<name(b);
+    return name(b);
+}
+
+std::string name(  BranchingStrategies b){
+    switch (b) {
+	        case BestBound: return "BestBound"; break;
+	        case BFS: return"BFS";  break;
+	        case DFS10: return "DFS10"; break;
+	        case DFS01: return "DFS01"; break;
+	        case Random: return"Random";
 	                break;              //execution of subsequent statements is terminated
-	        case End: return;
+	        case End: return "err";
 	}
 }
 
-void printResultmodeBranching(KpSolverBB & kpBB, BranchingStrategies  b){
+std::string printResultmodeBranching(KpSolverBB & kpBB, BranchingStrategies  b){
+    std::stringstream ss;
 	cout  << endl << "         BB mode Branchement ";
-	printModeBranching(b);
+	std::string s=printModeBranching(b);
+    ss<<s<<";";
 	cout << endl << endl;
 
 	kpBB.setBranchingStrategy(b);
@@ -38,7 +48,10 @@ void printResultmodeBranching(KpSolverBB & kpBB, BranchingStrategies  b){
 	auto end = std::chrono::steady_clock::now();
 	std::chrono::duration<double>  elapsed_seconds = end-start;
 	std::cout << endl  << "elapsed time: " << elapsed_seconds.count() << "s" << endl;
-	kpBB.printKnapsackSolution(false);
+    ss<<elapsed_seconds.count()<<";";
+	ss<<kpBB.printKnapsackSolution(false);
+
+    return ss.str();
 
 }
 
@@ -54,7 +67,12 @@ int main(int argc, char** argv) {
     bool verboseMode = true;
     if (argc < 3) verboseMode = false;
     const char* instanceFile = argv[1];
+    const char *outputFile= argv[2];;
 
+
+    ofstream fichier;
+    fichier.open(outputFile, std::ios_base::app); // ouverture du fichier en mode app https://stackoverflow.com/questions/61895932/how-to-append-to-a-file-in-c
+    
 
     KpSolverGreedy kpGreedy;
     kpGreedy.importInstance(instanceFile);
@@ -62,15 +80,17 @@ int main(int argc, char** argv) {
 
     if (verboseMode) kpGreedy.printKnapsackInstance();
 
+    fichier<<instanceFile<<";";
+    fichier<<"Greedy Bounds;;";
     cout  << endl << "Greedy bounds :"  << endl << endl;
-
     auto start = std::chrono::steady_clock::now();
     kpGreedy.solve();
     auto end = std::chrono::steady_clock::now();
     std::chrono::duration<double> elapsed_seconds = end-start;
     std::cout << "elapsed time: " << elapsed_seconds.count() << "s" << endl<< endl;
-    kpGreedy.printKnapsackSolution(false);
-
+    fichier<<elapsed_seconds.count()<<";";
+    std::string s=kpGreedy.printKnapsackSolution(false);
+    fichier<<s<<"\n";
 
     KpSolverBB kpBB;
 	kpBB.importInstance(instanceFile);
@@ -84,7 +104,10 @@ int main(int argc, char** argv) {
     cout  << endl << "Resultats sans heuristique gloutonne:"  << endl << endl;
 
     for ( BranchingStrategies modeBranch = BranchingStrategies::BestBound; modeBranch != BranchingStrategies::End; ++modeBranch){
-    	printResultmodeBranching(kpBB,modeBranch);
+        fichier<<instanceFile<<";";
+        fichier<<"sans heuristique gloutonne"<<";";
+    	fichier<<printResultmodeBranching(kpBB,modeBranch);
+        fichier<<"\n";
 
     }
 
@@ -93,16 +116,22 @@ int main(int argc, char** argv) {
 	kpBB.setWithPrimalHeuristics(true);
 
     for ( BranchingStrategies modeBranch = BranchingStrategies::BestBound; modeBranch != BranchingStrategies::End; ++modeBranch){
-    	printResultmodeBranching(kpBB,modeBranch);
+    	fichier<<instanceFile<<";";
+        fichier<<"avec heuristique gloutonne"<<";";
+    	fichier<<printResultmodeBranching(kpBB,modeBranch);
+        fichier<<"\n";
 
     }
 
-    cout  << endl << "Resultats avec heuristique prog dyanmqiue:"  << endl << endl;
+    cout  << endl << "Resultats avec heuristique prog dynamique:"  << endl << endl;
 
     kpBB.setWithDPinitPrimalHeuristic(true);
 
     for ( BranchingStrategies modeBranch = BranchingStrategies::BestBound; modeBranch != BranchingStrategies::End; ++modeBranch){
-    	printResultmodeBranching(kpBB,modeBranch);
+    	fichier<<instanceFile<<";";
+        fichier<<"sans heuristique prog dynamique"<<";";
+    	fichier<<printResultmodeBranching(kpBB,modeBranch);
+        fichier<<"\n";
 
     }
 
