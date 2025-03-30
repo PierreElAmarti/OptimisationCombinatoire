@@ -1,8 +1,8 @@
 #include "kpSolverHeurDP.hpp"
 //#include "kpSolverDP.hpp"
 //#include "kpSolverDP2.hpp"
-#include "kpSolverDP3.hpp"
-//#include "kpSolverGreedy.hpp"
+//#include "kpSolverDP3.hpp"
+#include "kpSolverGreedy.hpp"
 #include "kpSolverBB.hpp"
 #include <chrono>
 
