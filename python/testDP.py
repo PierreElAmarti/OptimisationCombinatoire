@@ -44,7 +44,7 @@ for path in sorted(root.glob("**/*"),reverse=True):
         #print(test)
     else:
         pass
-    if(i==1): #NB max d'instances à tester
+    if(i==5): #NB max d'instances à tester
         break
 
 print("fichier de sortie : resultats/"+baseFileName+""+str(nb)+".csv")
